@@ -1,0 +1,12 @@
+.vs
+.vs/**
+Configurator/bin
+Configurator/venv
+Configurator/obj
+Configurator/wwwroot/js/tdmodels
+Configurator/wwwroot/js/textures
+Configurator/wwwroot/js/jsm
+!Configurator/wwwroot/js/jsm/loaders/OrbitControls.js
+!Configurator/wwwroot/js/jsm/loaders/GLTFLoader.js
+!Configurator/wwwroot/js/jsm/loaders/RGBELoader.js
+!Configurator/wwwroot/js/jsm/loaders/STLLoader.js
