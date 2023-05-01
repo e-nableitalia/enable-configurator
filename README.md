@@ -5,7 +5,7 @@ Web app and API to retrieve and modify STL files and designs on OnShape
 .NET 6.0
 
 OnShape Base Document
-OnShape Development Keys ( Set in the AuthDeclaration Class)
+OnShape Development Keys ( Set in the AuthDeclaration.cs)
 
 
 # Container
@@ -14,9 +14,6 @@ Docker file with mcr.microsoft.com/dotnet/sdk:6.0 base image
 
 # Preview Of STL file
 The 3D preview model is generated using Three.JS
-
-
-
 
 ## Serialization Of Parameters
 
