@@ -34,7 +34,7 @@ namespace Configurator
     [ApiController]
     public class STLController : ControllerBase
     {
-        public Database sql;
+        
 
 
         // GET: api/<STLController>
