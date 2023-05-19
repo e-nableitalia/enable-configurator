@@ -1,0 +1,139 @@
+{
+  "btType": "BTConfigurationResponse-2019",
+  "configurationParameters": [
+    {
+      "btType": "BTMConfigurationParameterEnum-105",
+      "defaultValue": "Default",
+      "enumName": "List_5LYKuaBDUO4vsW_conf",
+      "namespace": "",
+      "options": [
+        {
+          "btType": "BTMEnumOption-592",
+          "optionName": "Default",
+          "option": "Default",
+          "nodeId": "ME5Bwl5JAV55gfbWD"
+        },
+        {
+          "btType": "BTMEnumOption-592",
+          "optionName": "jhfdj",
+          "option": "elbow",
+          "nodeId": "MDgbP+AgFCJrOJeJk"
+        },
+        {
+          "btType": "BTMEnumOption-592",
+          "optionName": "W",
+          "option": "W",
+          "nodeId": "MEoiTZaRX5iqFUw4d"
+        }
+      ],
+      "parameterName": "Configuration",
+      "parameterId": "List_5LYKuaBDUO4vsW",
+      "nodeId": "Memcb2aGJe1aTDGuj"
+    },
+    {
+      "btType": "BTMConfigurationParameterQuantity-1826",
+      "quantityType": "LENGTH",
+      "rangeAndDefault": {
+        "btType": "BTQuantityRange-181",
+        "location": {
+          "btType": "BTLocationInfo-226",
+          "version": "",
+          "topLevel": "",
+          "elementMicroversion": "",
+          "moduleIds": {
+            "btType": "BTDocumentVersionElementIds-1897",
+            "versionId": "",
+            "documentId": "",
+            "elementId": ""
+          },
+          "document": "",
+          "languageVersion": 0,
+          "column": 0,
+          "endLine": 0,
+          "endColumn": 0,
+          "line": 0,
+          "character": 0,
+          "endCharacter": 0,
+          "parseNodeId": "",
+          "nodeId": "k3bHoY/ZlCvGLO8H"
+        },
+        "defaultValue": 120,
+        "units": "millimeter",
+        "maxValue": 100000,
+        "minValue": 0
+      },
+      "parameterName": "ElbowLength",
+      "parameterId": "ElbobRadius",
+      "nodeId": "M8yGDxakisOAor0YC"
+    },
+    {
+      "btType": "BTMConfigurationParameterQuantity-1826",
+      "quantityType": "LENGTH",
+      "rangeAndDefault": {
+        "btType": "BTQuantityRange-181",
+        "location": {
+          "btType": "BTLocationInfo-226",
+          "version": "",
+          "topLevel": "",
+          "elementMicroversion": "",
+          "moduleIds": {
+            "btType": "BTDocumentVersionElementIds-1897",
+            "versionId": "",
+            "documentId": "",
+            "elementId": ""
+          },
+          "document": "",
+          "languageVersion": 0,
+          "column": 0,
+          "endLine": 0,
+          "endColumn": 0,
+          "line": 0,
+          "character": 0,
+          "endCharacter": 0,
+          "parseNodeId": "",
+          "nodeId": "67awgJHBODv1dmQ/"
+        },
+        "defaultValue": 30,
+        "units": "millimeter",
+        "maxValue": 40,
+        "minValue": 0
+      },
+      "parameterName": "HandleRadius",
+      "parameterId": "HandleRadius",
+      "nodeId": "MQs2knNoRQgi7+X24"
+    }
+  ],
+  "currentConfiguration": [
+    {
+      "btType": "BTMParameterQuantity-147",
+      "value": 30,
+      "units": "millimeter",
+      "isInteger": false,
+      "expression": "30 mm",
+      "parameterId": "HandleRadius",
+      "nodeId": "M59T+YLcAyMFFjC+f"
+    },
+    {
+      "btType": "BTMParameterQuantity-147",
+      "value": 120,
+      "units": "millimeter",
+      "isInteger": false,
+      "expression": "120 mm",
+      "parameterId": "ElbobRadius",
+      "nodeId": "McLMQiEKLj84Ygzgt"
+    },
+    {
+      "btType": "BTMParameterEnum-145",
+      "namespace": "",
+      "nodeId": "MD/ftBdjZfTlDbCqc",
+      "value": "Default",
+      "enumName": "List_5LYKuaBDUO4vsW_conf",
+      "parameterId": "List_5LYKuaBDUO4vsW"
+    }
+  ],
+  "libraryVersion": 1963,
+  "serializationVersion": "1.2.0",
+  "rejectMicroversionSkew": false,
+  "microversionSkew": false,
+  "sourceMicroversion": "8abef03385d291debbc7965a"
+}

@@ -4,4 +4,5 @@ Configurator/bin
 Configurator/venv
 Configurator/obj
 Configurator/wwwroot/js/tdmodels
+frontend/node_modules
 
