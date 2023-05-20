@@ -189,6 +189,14 @@ button:hover {
   padding-right: 5px;
 }
 
+.customizer .p-slider-horizontal, .slider-demo .p-inputtext {
+  width: 14rem;
+}
+
+.customizer .p-slider-vertical {
+  height: 14rem;
+}
+
 .share {
   bottom: 40px;
   position: absolute;
