@@ -5,7 +5,13 @@ Web app and API to retrieve and modify STL files and designs on OnShape
 ## frontend
 node.js / react / primefaces / primeflex
 
-## backend
+## backend.legacy
+Spring application, requires three environment variables to run:
+ONSHAPE_API_ACCESSKEY => onshape account access key
+ONSHAPE_API_SECRETKEY => onshape account sevret key
+ONSHAPE_DOCUMENT_URL => onshape url of the document to customize
+
+## backend.legacy
 .NET 6.0
 
 OnShape Base Document

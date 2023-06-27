@@ -45,7 +45,7 @@ public class SimpleController {
 			String accessKey = System.getenv("ONSHAPE_API_ACCESSKEY");
 			String secretKey = System.getenv("ONSHAPE_API_SECRETKEY");
 
-			String documentUrl = "https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845";
+			String documentUrl = System.getenv("ONSHAPE_DOCUMENT_URL");; // "https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845";
 
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
