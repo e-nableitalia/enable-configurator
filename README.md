@@ -7,14 +7,18 @@ node.js / react / primefaces / primeflex
 
 ## backend.legacy
 Spring application, requires three environment variables to run:
+
 ONSHAPE_API_ACCESSKEY => onshape account access key
+
 ONSHAPE_API_SECRETKEY => onshape account sevret key
-ONSHAPE_DOCUMENT_URL => onshape url of the document to customize
+
+ONSHAPE_DOCUMENT_URL => onshape url of the document to customize (e.g. "https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845")
 
 ## backend.legacy
 .NET 6.0
 
 OnShape Base Document
+
 OnShape Development Keys ( Set in the AuthDeclaration.cs)
 
 # Container
