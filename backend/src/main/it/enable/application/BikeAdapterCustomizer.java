@@ -13,7 +13,6 @@ import com.onshape.api.requests.PartStudiosUpdateFeatureRequestFeature;
 import com.onshape.api.responses.DocumentsGetElementListResponse;
 import com.onshape.api.responses.DocumentsGetElementListResponseElements;
 import com.onshape.api.responses.PartStudiosGetFeaturesResponse;
-import com.onshape.api.responses.PartStudiosUpdateFeatureResponse;
 import com.onshape.api.responses.PartsExportStlResponse;
 import com.onshape.api.responses.PartsGetPartsResponse;
 import com.onshape.api.types.OnshapeDocument;
