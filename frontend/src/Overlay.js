@@ -86,16 +86,100 @@ function Customizer() {
 	const deviceItems = [
 		{label: 'Bike Adapter', value: 'BikeAdapter'}
 	];
+
+	const doSubmit = async (title, body) => {
+		await fetch('https://webhook.site/6e10610f-babd-495e-a5bf-703a09d4c0db', {
+		   method: 'POST',
+		   body: JSON.stringify({
+			  arm: arm,
+			  affectedarm: affectedarm,
+			  cone: cone,
+			  coneb: coneb,
+			  handle: handle,
+			  affectedarminner: affectedarminner
+		   }),
+		   headers: {
+			  'Content-type': 'application/json; charset=UTF-8',
+		   },
+		})
+		   .then((response) => response.json())
+		   .then((data) => {
+			  console.log("done");
+		   })
+		   .catch((err) => {
+			  console.log(err.message);
+		   });
+	};
+	 
+	const handleSubmit = (e) => {
+		//e.preventDefault();
+		doSubmit();
+	}; 
+	
+	const handleClick = async () => {
+	
+		try {
+		  const response = await fetch('http://localhost:8080/customizer/bikeadapter', {
+			method: 'POST',
+			body: JSON.stringify({
+			   arm: arm,
+			   affectedarm: affectedarm,
+			   cone: cone,
+			   coneb: coneb,
+			   handle: handle,
+			   affectedarminner: affectedarminner
+			}),
+			headers: {
+			   'Content-type': 'application/json; charset=UTF-8',
+			},
+		 });
+			
+	
+		  if (!response.ok) {
+			throw new Error(`Error! status: ${response.status}`);
+		  }
+	
+		  const result = await response.blob();
+	
+		// Create blob link to download
+		const url = window.URL.createObjectURL(
+			new Blob([result]),
+		);
+		const link = document.createElement('a');
+		link.href = url;
+		link.setAttribute(
+			'download',
+			`FileName.pdf`,
+		);
+	
+		// Append to html link element page
+		document.body.appendChild(link);
+	
+		// Start download
+		link.click();
+	
+		// Clean up and remove the link
+		link.parentNode.removeChild(link);
+		
+		  console.log('result is: ', JSON.stringify(result, null, 4));
+		} catch (err) {
+		  
+		} finally {
+
+		}
+	  };
+
+
 	return (
 
 		<div className="customizer">
-			<card>
-				<div classname="field grid">
+			
+				{/* <div classname="field grid">
 					<label for="color" class="col-fixed" style={{ "width": "300px" }}>Select Device</label>
 					<div class="col">
 						<Dropdown value={device} options={deviceItems} onChange={(e) => setDevice(e.value)} placeholder="Select device model"/>
 					</div>
-				</div>
+				</div> */}
 				<div className="field grid">
 					<label for="color" class="col-fixed" style={{ "width": "300px" }}>Device Color</label>
 					<div class="col">
@@ -116,7 +200,7 @@ function Customizer() {
 				<div className="field grid">
 					<label for="affected-arm" class="col-fixed" style={{ "width": "300px" }}>B - Affected Arm Length</label>
 					<div class="col">
-						<InputText value={affectedarm} onChange={(e) => setArm(e.target.value)} className="w-full" />
+						<InputText value={affectedarm} onChange={(e) => setAffectedArm(e.target.value)} className="w-full" />
 						<Slider id="affected-arm" value={affectedarm} onChange={(e) => setAffectedArm(e.value)} className="w-full" />
 					</div>
 				</div>
@@ -131,15 +215,15 @@ function Customizer() {
 				<div className="field grid">
 					<label for="coneb" class="col-fixed" style={{ "width": "300px" }}>D - Cone Length Bottom</label>
 					<div class="col">
-						<InputText value={coneb} onChange={(e) => setCone(e.target.value)} className="w-full" />
+						<InputText value={coneb} onChange={(e) => setConeb(e.target.value)} className="w-full" />
 						<Slider id="coneb" value={coneb} onChange={(e) => setConeb(e.value)} className="w-full" />
 					</div>
 				</div>
 				<div className="field grid">
-					<label for="radius" class="col-fixed" style={{ "width": "300px" }}>E - Handle Radius</label>
+					<label for="radius" class="col-fixed" style={{ "width": "300px" }}>E - Handle Diameter</label>
 					<div class="col">
 						<InputText value={handle} onChange={(e) => setHandle(e.target.value)} className="w-full" />
-						<Slider id="radius" value={handle} onChange={(e) => setHandle(e.value)} className="w-full" />
+						<Slider id="radius" value={handle} onChange={(e) => setHandle(e.value)} max="40" min="20" className="w-full" />
 					</div>
 				</div>
 				<div className="field grid">
@@ -149,7 +233,7 @@ function Customizer() {
 						<Slider id="affectedarminner" value={affectedarminner} onChange={(e) => setAffectedArmInner(e.value)} className="w-full" />
 					</div>
 				</div>
-			</card>
+			
 
 			<Card role="region">
 				Change values to generate a custom Device
@@ -158,12 +242,7 @@ function Customizer() {
 			<button
 				className="share"
 				style={{ background: snap.color }}
-				onClick={() => {
-					const link = document.createElement('a')
-					link.setAttribute('download', 'canvas.png')
-					link.setAttribute('href', document.querySelector('canvas').toDataURL('image/png').replace('image/png', 'image/octet-stream'))
-					link.click()
-				}}>
+				onClick={handleClick}>
 				GENERATE
 				<AiFillTool size="1.3em" />
 			</button>

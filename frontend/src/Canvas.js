@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react'
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
-import { useGLTF, useTexture, AccumulativeShadows, RandomizedLight, Decal, Environment, Center } from '@react-three/drei'
+import { useTexture, AccumulativeShadows, RandomizedLight, Environment } from '@react-three/drei'
 
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+//import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 // import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 // import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
@@ -13,11 +13,13 @@ import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { state } from './store'
 
+
+
 export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
 
   <Canvas shadows camera={{ position, fov }} gl={{ preserveDrawingBuffer: true }} eventSource={document.getElementById('root')} eventPrefix="client">
     <ambientLight intensity={0.5} />
-    <Environment preset="city" />
+    <Environment preset="city"></Environment>
     <CameraRig>
       <Backdrop />
       <BikeAdapter />
