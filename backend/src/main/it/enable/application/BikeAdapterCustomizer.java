@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onshape.api.Onshape;
@@ -30,6 +33,8 @@ public class BikeAdapterCustomizer {
 	private String elementId;
 	private boolean valid;
 	Features features;
+	
+	private static final Logger logger = (Logger) LogManager.getLogger(BikeAdapterCustomizer.class);
 
 	public BikeAdapterCustomizer(Onshape c, String did, String w) {
 		client = c;
@@ -48,15 +53,18 @@ public class BikeAdapterCustomizer {
 				elementId = elements[0].id;
 			}
 
+			logger.info("Loading document[" + documentID + ", workspace[" + workspace + "], elementId[" + elementId + "]");
 			OnshapeDocument d = new OnshapeDocument(documentID, workspace, elementId);
 
 			PartStudiosGetFeaturesResponse resp = client.partStudios().getFeatures().call(d);
 
 			ObjectMapper mapper = new ObjectMapper();
 
+			logger.info("Mapping features");
 			String obj = mapper.writeValueAsString(resp);
 
 			features = mapper.readValue(obj, Features.class);
+			logger.info("Done");
 			valid = true;
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -70,8 +78,12 @@ public class BikeAdapterCustomizer {
 	public void setParam(String feature, String param, String name, String value) {
 		if (!valid)
 			return;
+		
+		logger.info("Getting feature[" + feature + "]");
+
 		Feature f = features.getByName(feature);
 
+		logger.info("Setting parameter[" + param + "], valueName[" + name + "], value[" + value + "]");
 		f.setValue(param, name, value);
 
 		try {
@@ -80,6 +92,7 @@ public class BikeAdapterCustomizer {
 
 			Map map = mapper.readValue(message, Map.class);
 
+			logger.info("Updating feature[" + feature + "]");
 			PartStudiosUpdateFeatureRequestFeature psufrf = PartStudiosUpdateFeatureRequestFeature.builder()
 					.type(Integer.toString(f.getType()))
 					.typeName(f.getTypeName())
@@ -89,6 +102,7 @@ public class BikeAdapterCustomizer {
 					.sourceMicroversion(features.getSourceMicroversion())
 					.rejectMicroversionSkew(false)
 					.feature(psufrf).call(f.getMessage().getFeatureId(), documentID, workspace, elementId);
+			logger.info("Done");
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			System.out.println("Error:" + e.toString());
