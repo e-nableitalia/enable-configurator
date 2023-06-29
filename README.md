@@ -1,11 +1,11 @@
-# enable-configurator
+## enable-configurator
 Web app and API to retrieve and modify STL files and designs on OnShape
 
-# Prerequisites 
-## frontend
+## Prerequisites 
+# frontend
 node.js / react / primefaces / primeflex => deployed as static content in apache http web server
 
-## backend.legacy
+# backend.legacy
 Spring application, requires reverse proxy configuration and the following  environment variables set:
 
 ONSHAPE_API_ACCESSKEY => onshape account access key
@@ -14,14 +14,12 @@ ONSHAPE_API_SECRETKEY => onshape account sevret key
 
 ONSHAPE_DOCUMENT_URL => onshape url of the document to customize (e.g. "https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845")
 
-## backend.legacy
+# backend.legacy
 .NET 6.0
 
 OnShape Base Document
 
 OnShape Development Keys ( Set in the AuthDeclaration.cs)
-
-# Container
 
 Docker file with mcr.microsoft.com/dotnet/sdk:6.0 base image
 
@@ -29,24 +27,24 @@ Docker file with mcr.microsoft.com/dotnet/sdk:6.0 base image
 
 The 3D preview model is generated using Three.JS
 
-## Serialization Of Parameters
+# Serialization Of Parameters
 
 The parameter serialisation and parsing is created following the Onshape API Version 5 . 
 
 # Base OnShape Document
 
-This current version uses the version of a public  OnShape document, which is defined in the FileVersion class via the OriginalDId, OriginalWiD and OriginalEid .
+This current version uses the version of a public OnShape document whose url is specified with the ENV parameter: ONSHAPE_DOCUMENT_URL.
 The base document is used as a base to create new versions on which the parameters can be readjusted via parameters.
 
 # Compatibility
 
 Currently tested and supported for Chrome
 
-# Authors
+## Authors
 Kabir Lovero <kabirlovero@gmail.com>, e-Nable Italia
 Alberto Navatta <alberto@e-nableitalia.it>, e-Nable Italia
 
-# License
+## License
 
 This software is released under *GNU General Public License v3.0*
 
