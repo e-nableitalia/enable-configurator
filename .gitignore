@@ -1,7 +1,4 @@
-.vs
-.vs/**
-Configurator/bin
-Configurator/venv
-Configurator/obj
-Configurator/wwwroot/js/tdmodels
-
+backend/.classpath
+backend/.settings
+frontend/node_modules
+frontend/build
