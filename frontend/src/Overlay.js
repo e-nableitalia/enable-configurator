@@ -93,7 +93,7 @@ function Customizer() {
 	
 		try {
 		  toast.current.show({severity:'info', summary: 'Parameters validated, generating device', detail:'Please wait until complete...', sticky: true});
-		  const response = await fetch('http://16.171.7.119:8080/customizer/bikeadapter', {
+		  const response = await fetch('https://dev.e-nableitalia.it/backend/customizer/bikeadapter', {
 			method: 'POST',
 			body: JSON.stringify({
 			   arm: arm,

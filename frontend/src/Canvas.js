@@ -60,7 +60,7 @@ function BikeAdapter(props) {
     metalness: .9, roughness: 0.6, color: 0x0ad2ff
   })
 
-  const geom = useLoader(STLLoader, "/defaultBikeAdapter.stl")
+  const geom = useLoader(STLLoader, "defaultBikeAdapter.stl")
 
   const ref = useRef();
   const { camera } = useThree();
