@@ -3,10 +3,11 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Slider } from "primereact/slider";
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
+import { Toast } from 'primereact/toast';
 import { Dropdown } from 'primereact/dropdown';
 import { motion, AnimatePresence } from 'framer-motion'
 import { AiFillTool, AiOutlineArrowLeft, AiOutlineHighlight } from 'react-icons/ai'
@@ -75,51 +76,24 @@ export function Overlay() {
 }
 
 function Customizer() {
+	const toast = useRef(null);
 	const snap = useSnapshot(state);
 	const [device, setDevice] = useState(null);
-	const [arm, setArm] = useState(50);
-	const [affectedarm, setAffectedArm] = useState(50);
-	const [cone, setCone] = useState(50);
-	const [coneb, setConeb] = useState(50);
-	const [handle, setHandle] = useState(50);
-	const [affectedarminner, setAffectedArmInner] = useState(50);
+	const [arm, setArm] = useState(220);
+	const [affectedarm, setAffectedArm] = useState(100);
+	const [cone, setCone] = useState(100);
+	const [coneb, setConeb] = useState(110);
+	const [handle, setHandle] = useState(30);
+	const [affectedarminner, setAffectedArmInner] = useState(120);
 	const deviceItems = [
 		{label: 'Bike Adapter', value: 'BikeAdapter'}
 	];
-
-	const doSubmit = async (title, body) => {
-		await fetch('https://webhook.site/6e10610f-babd-495e-a5bf-703a09d4c0db', {
-		   method: 'POST',
-		   body: JSON.stringify({
-			  arm: arm,
-			  affectedarm: affectedarm,
-			  cone: cone,
-			  coneb: coneb,
-			  handle: handle,
-			  affectedarminner: affectedarminner
-		   }),
-		   headers: {
-			  'Content-type': 'application/json; charset=UTF-8',
-		   },
-		})
-		   .then((response) => response.json())
-		   .then((data) => {
-			  console.log("done");
-		   })
-		   .catch((err) => {
-			  console.log(err.message);
-		   });
-	};
-	 
-	const handleSubmit = (e) => {
-		//e.preventDefault();
-		doSubmit();
-	}; 
 	
 	const handleClick = async () => {
 	
 		try {
-		  const response = await fetch('http://localhost:8080/customizer/bikeadapter', {
+		  toast.current.show({severity:'info', summary: 'Parameters validated, generating device', detail:'Please wait until complete...', sticky: true});
+		  const response = await fetch('http://configurator.e-nableitalia.it:8080/customizer/bikeadapter', {
 			method: 'POST',
 			body: JSON.stringify({
 			   arm: arm,
@@ -136,9 +110,12 @@ function Customizer() {
 			
 	
 		  if (!response.ok) {
-			throw new Error(`Error! status: ${response.status}`);
+			toast.current.show({severity:'error', summary: 'Error generating device: ${response.status}', detail:'Error', life: 5000});
+			return;
 		  }
 	
+		  toast.current.show({severity:'info', summary: 'Device generation complete', detail:'Starting file download...', life: 3000});
+		  
 		  const result = await response.blob();
 	
 		// Create blob link to download
@@ -161,9 +138,9 @@ function Customizer() {
 		// Clean up and remove the link
 		link.parentNode.removeChild(link);
 		
-		  console.log('result is: ', JSON.stringify(result, null, 4));
+		console.log('result is: ', JSON.stringify(result, null, 4));
 		} catch (err) {
-		  
+			toast.current.show({severity:'error', summary: 'Error generating device', detail:'Error', life: 5000});
 		} finally {
 
 		}
@@ -173,13 +150,7 @@ function Customizer() {
 	return (
 
 		<div className="customizer">
-			
-				{/* <div classname="field grid">
-					<label for="color" class="col-fixed" style={{ "width": "300px" }}>Select Device</label>
-					<div class="col">
-						<Dropdown value={device} options={deviceItems} onChange={(e) => setDevice(e.value)} placeholder="Select device model"/>
-					</div>
-				</div> */}
+				<Toast ref={toast} />
 				<div className="field grid">
 					<label for="color" class="col-fixed" style={{ "width": "300px" }}>Device Color</label>
 					<div class="col">
@@ -193,44 +164,44 @@ function Customizer() {
 				<div className="field grid">
 					<label for="arm" class="col-fixed" style={{ "width": "300px" }}>A - Arm Length</label>
 					<div class="col">
-						<InputText value={arm} onChange={(e) => setArm(e.target.value)} className="w-full" />
-						<Slider id="arm" value={arm} onChange={(e) => setArm(e.value)} className="w-full" />
+						<InputText value={arm} onChange={(e) => setArm(e.target.value)} className="w-full" tooltip='Enter arm length, allowed range is [170, 240] mm'/>
+						<Slider id="arm" disabled="true" value={arm} min="170" max="240" onChange={(e) => setArm(e.value)} className="w-full" />
 					</div>
 				</div>
 				<div className="field grid">
 					<label for="affected-arm" class="col-fixed" style={{ "width": "300px" }}>B - Affected Arm Length</label>
 					<div class="col">
-						<InputText value={affectedarm} onChange={(e) => setAffectedArm(e.target.value)} className="w-full" />
-						<Slider id="affected-arm" value={affectedarm} onChange={(e) => setAffectedArm(e.value)} className="w-full" />
+						<InputText value={affectedarm} onChange={(e) => setAffectedArm(e.target.value)} className="w-full" tooltip='Enter affected arm length, allowed range is [70, A - 35] mm'/>
+						<Slider id="affected-arm" disabled='true' value={affectedarm} min="70" max="240" onChange={(e) => setAffectedArm(e.value)} className="w-full" />
 					</div>
 				</div>
 
 				<div className="field grid">
 					<label for="cone" class="col-fixed" style={{ "width": "300px" }}>C - Cone Length Top</label>
 					<div class="col">
-						<InputText value={cone} onChange={(e) => setCone(e.target.value)} className="w-full" />
-						<Slider id="cone" value={cone} onChange={(e) => setCone(e.value)} className="w-full" />
+						<InputText value={cone} onChange={(e) => setCone(e.target.value)} className="w-full" tooltip='Enter  arm circumference (measured on top), allowed range is [100, 150] mm'/>
+						<Slider id="cone" value={cone} disabled='true' min="100" max="150" onChange={(e) => setCone(e.value)} className="w-full" />
 					</div>
 				</div>
 				<div className="field grid">
 					<label for="coneb" class="col-fixed" style={{ "width": "300px" }}>D - Cone Length Bottom</label>
 					<div class="col">
-						<InputText value={coneb} onChange={(e) => setConeb(e.target.value)} className="w-full" />
-						<Slider id="coneb" value={coneb} onChange={(e) => setConeb(e.value)} className="w-full" />
+						<InputText value={coneb} onChange={(e) => setConeb(e.target.value)} className="w-full" tooltip='Enter arm circumference (measured at elbow crease), allowed range is [110, 250] mm'/>
+						<Slider id="coneb" value={coneb} disabled='true' min="110" max="250" onChange={(e) => setConeb(e.value)} className="w-full" />
 					</div>
 				</div>
 				<div className="field grid">
 					<label for="radius" class="col-fixed" style={{ "width": "300px" }}>E - Handle Diameter</label>
 					<div class="col">
-						<InputText value={handle} onChange={(e) => setHandle(e.target.value)} className="w-full" />
-						<Slider id="radius" value={handle} onChange={(e) => setHandle(e.value)} max="40" min="20" className="w-full" />
+						<InputText value={handle} onChange={(e) => setHandle(e.target.value)} className="w-full" tooltip='Enter handle diameter, allowed range is [20, 40] mm'/>
+						<Slider id="radius" value={handle} disabled='true' min="20" max="40" onChange={(e) => setHandle(e.value)} max="40" min="20" className="w-full" />
 					</div>
 				</div>
 				<div className="field grid">
 					<label for="affectedarminner" class="col-fixed" style={{ "width": "300px" }}>F - Affected Arm Inner Length</label>
 					<div class="col">
-						<InputText value={affectedarminner} onChange={(e) => setAffectedArmInner(e.target.value)} className="w-full" />
-						<Slider id="affectedarminner" value={affectedarminner} onChange={(e) => setAffectedArmInner(e.value)} className="w-full" />
+						<InputText value={affectedarminner} onChange={(e) => setAffectedArmInner(e.target.value)} className="w-full" tooltip='Enter affected arm length (measured at elbow crease), allowed range is [100, 200] mm'/>
+						<Slider id="affectedarminner" value={affectedarminner} disabled='true' min="100" max="200" onChange={(e) => setAffectedArmInner(e.value)} className="w-full" />
 					</div>
 				</div>
 			

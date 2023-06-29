@@ -1,5 +1,6 @@
 package it.enable.application;
 
+import java.io.ObjectInputFilter.Config;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -70,7 +71,12 @@ public class SimpleController {
 			logger.info("Loading params");
 			customizer.load();
 			logger.info("Setting params");
-			customizer.setParam("A_lng_unaff", "lengthValue", "expression", "200 mm");
+			customizer.setParam("A_lng_unaff", "lengthValue", "expression", config.arm + " mm");
+			customizer.setParam("B_lng_aff", "lengthValue", "expression", config.affectedarm + " mm");
+			customizer.setParam("F_lng_affect_inner_elbow", "lengthValue", "expression", config.affectedarminner + " mm");
+			customizer.setParam("C_tip_circ", "lengthValue", "expression", config.cone + " mm");
+			customizer.setParam("D_root_circ", "lengthValue", "expression", config.coneb + " mm");
+			customizer.setParam("E_handlebar_dia", "lengthValue", "expression", config.handle + " mm");
 
 			logger.info("STL Export");
 			String exportedFile = customizer.export();        

@@ -17,13 +17,18 @@
   "RootNamespace": "Configurator",
   "Documents": [
     {
-      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -32,8 +37,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -44,11 +49,6 @@
     {
       "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\work\\node\\enable-configurator\\backend.legacy\\Configurator\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

@@ -4,6 +4,7 @@ import { useTexture, AccumulativeShadows, RandomizedLight, Environment } from '@
 
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei'
+import { CameraControls    } from '@react-three/drei'
 //import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 // import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 // import { STLLoader } from 'three/addons/loaders/STLLoader.js';
@@ -24,7 +25,7 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
       <Backdrop />
       <BikeAdapter />
     </CameraRig>
-    <OrbitControls />
+    <CameraControls />
   </Canvas>
 )
 
