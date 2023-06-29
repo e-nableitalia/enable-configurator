@@ -44,6 +44,7 @@ Currently tested and supported for Chrome
 
 # Authors
 Kabir Lovero <kabirlovero@gmail.com>, e-Nable Italia
+
 Alberto Navatta <alberto@e-nableitalia.it>, e-Nable Italia
 
 # License
