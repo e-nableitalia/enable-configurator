@@ -71,7 +71,7 @@ public class SimpleController {
 			customizer.load();
 			logger.info("Setting params");
 			customizer.setParam("A_lng_unaff", "lengthValue", "expression", config.arm + " mm");
-			customizer.setParam("B_lng_aff", "lengthValue", "expression", config.affectedarm + " mm");
+			customizer.setParam("B_lng_affect", "lengthValue", "expression", config.affectedarm + " mm");
 			customizer.setParam("F_lng_affect_inner_elbow", "lengthValue", "expression", config.affectedarminner + " mm");
 			customizer.setParam("C_tip_circ", "lengthValue", "expression", config.cone + " mm");
 			customizer.setParam("D_root_circ", "lengthValue", "expression", config.coneb + " mm");
