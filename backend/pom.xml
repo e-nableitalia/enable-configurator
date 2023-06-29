@@ -16,7 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
 		<!-- <log4j2.version>2.17.1</log4j2.version> -->
 	</properties>
@@ -33,14 +33,16 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>17</release>
-          					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>1.18.20</version>
-						</path>
-					</annotationProcessorPaths>
+	        <source>1.8</source>
+        	<target>1.8</target>
+	        <verbose>true</verbose>
+       		<annotationProcessorPaths>
+			<path>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.18.20</version>
+			</path>
+		</annotationProcessorPaths>
         </configuration>
       </plugin>
 
