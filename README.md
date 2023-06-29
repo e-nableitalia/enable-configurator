@@ -3,10 +3,10 @@ Web app and API to retrieve and modify STL files and designs on OnShape
 
 # Prerequisites 
 ## frontend
-node.js / react / primefaces / primeflex
+node.js / react / primefaces / primeflex => deployed as static content in apache http web server
 
 ## backend.legacy
-Spring application, requires three environment variables to run:
+Spring application, requires reverse proxy configuration and the following  environment variables set:
 
 ONSHAPE_API_ACCESSKEY => onshape account access key
 
