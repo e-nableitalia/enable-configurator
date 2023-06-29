@@ -1,6 +1,5 @@
 package it.enable.application;
 
-import java.io.ObjectInputFilter.Config;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
