@@ -1,5 +1,7 @@
 # enable-configurator
-Web app and API to retrieve and modify STL files and designs on OnShape
+Web app and API to retrieve and modify STL files and designs on OnShape,.
+
+Current version supports only e-Nable Italia BikeAdapter project (https://github.com/e-nableitalia/bikeadapter)
 
 # Prerequisites 
 ## frontend
