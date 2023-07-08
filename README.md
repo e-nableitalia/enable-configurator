@@ -7,14 +7,12 @@ Current version supports only e-Nable Italia BikeAdapter project (https://github
 ## frontend
 node.js / react / primefaces / primeflex => deployed as static content in apache http web server
 
-## backend.legacy
-Spring application, requires reverse proxy configuration and the following  environment variables set:
+## backend
+Spring application, requires reverse proxy configuration and the following environment variables set:
 
 ONSHAPE_API_ACCESSKEY => onshape account access key
 
 ONSHAPE_API_SECRETKEY => onshape account sevret key
-
-ONSHAPE_DOCUMENT_URL => onshape url of the document to customize (e.g. "https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845")
 
 ## backend.legacy
 .NET 6.0
@@ -33,16 +31,26 @@ The 3D preview model is generated using Three.JS
 
 The parameter serialisation and parsing is created following the Onshape API Version 5 . 
 
-## Base OnShape Document
+## OnShape Document Customization
 
-This current version uses the version of a public OnShape document whose url is specified with the ENV parameter: ONSHAPE_DOCUMENT_URL.
+The current version allows partial dynamic configuration of OnShape document:
+* the frontend application provides a static list of configurable devices (in current version only BikeAdapter and BikeAdapterV2 are supported, please, note, both point to the same onshapre document, the two devices are used to test device selection capability on the UI)
+* frontend at present time has a collection of parameters associated to the device (this is derived by a static json structure and dynamically presented on the UI and then bound to onshape document for device parametrization in the "generate" phase).
+
 The base document is used as a base to create new versions on which the parameters can be readjusted via parameters.
+
+## TODO
+
+Below are few new features we've in roadmap:
+* extract the list of devices from onShape subscription
+* extract the parameters definition fron the onShape document
 
 ## Compatibility
 
 Currently tested and supported for Chrome
 
 # Authors
+
 Kabir Lovero <kabirlovero@gmail.com>, e-Nable Italia
 
 Alberto Navatta <alberto@e-nableitalia.it>, e-Nable Italia
