@@ -1,23 +1,17 @@
 import { useRef, useEffect } from 'react'
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
-import { useTexture, AccumulativeShadows, RandomizedLight, Environment } from '@react-three/drei'
+import { AccumulativeShadows, RandomizedLight, Environment } from '@react-three/drei'
 
 import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei'
 import { CameraControls    } from '@react-three/drei'
-//import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-// import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
-// import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { state } from './store'
 
-
-
 export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
-
   <Canvas shadows camera={{ position, fov }} gl={{ preserveDrawingBuffer: true }} eventSource={document.getElementById('root')} eventPrefix="client">
     <ambientLight intensity={0.5} />
     <Environment preset="city"></Environment>
@@ -54,13 +48,12 @@ function CameraRig({ children }) {
 
 function BikeAdapter(props) {
   const snap = useSnapshot(state)
-  const texture = useTexture(`/${snap.decal}.png`)
-
+  
   const material = new THREE.MeshPhysicalMaterial({
     metalness: .9, roughness: 0.6, color: 0x0ad2ff
   })
 
-  const geom = useLoader(STLLoader, "/defaultBikeAdapter.stl")
+  const geom = useLoader(STLLoader, "defaultBikeAdapter.stl")
 
   const ref = useRef();
   const { camera } = useThree();
@@ -77,6 +70,3 @@ function BikeAdapter(props) {
   )
 }
 
-//useGLTF.preload('/originalBikeAdapter.glb')
-//useGLTF.preload('/shirt_baked_collapsed.glb')
-//;['/react.png', '/three2.png', '/pmndrs.png'].forEach(useTexture.preload)
