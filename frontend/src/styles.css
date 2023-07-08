@@ -166,6 +166,35 @@ button:hover {
   transform: scale(1.1);
 }
 
+.preview {
+  margin-right: 20px;
+  margin-left: 20px;
+  position: relative;
+  box-shadow: inset 0 0 0 0.09px black;
+}
+
+.preview:hover {
+  box-shadow: inset -250px 0 0 0 black;
+}
+
+.share {
+  bottom: 40px;
+  position: absolute;
+  right: 40px;
+}
+
+.exit {
+  bottom: 40px;
+  position: absolute;
+  left: 40px;
+  background-color: black;
+  box-shadow: inset 0 0 0 0.09px black;
+}
+
+.exit:hover {
+  box-shadow: inset -250px 0 0 0 black;
+}
+
 /* CUSTOMIZER */
 
 .customizer {
@@ -195,12 +224,6 @@ button:hover {
 
 .customizer .p-slider-vertical {
   height: 14rem;
-}
-
-.share {
-  bottom: 40px;
-  position: absolute;
-  right: 40px;
 }
 
 .zoom {
@@ -308,18 +331,6 @@ button:hover {
   gap: 20px;
 }
 
-.exit {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  background-color: black;
-  box-shadow: inset 0 0 0 0.09px black;
-}
-
-.exit:hover {
-  box-shadow: inset -250px 0 0 0 black;
-}
-
 @media screen and (max-width: 600px) {
   .section--container {
     margin-left: 15vw;
@@ -345,3 +356,21 @@ button:hover {
     left: 0;
   }
 }
+
+
+/* DialogDemo.css */
+
+.dialog-demo .p-button {
+  margin: 0 .5rem 0 0;
+  min-width: 10rem;
+}
+
+.dialog-demo p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.dialog-demo .p-dialog .p-button {
+  min-width: 6rem;
+}
+               

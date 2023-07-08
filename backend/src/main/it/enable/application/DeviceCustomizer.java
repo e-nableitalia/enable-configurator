@@ -26,7 +26,7 @@ import it.enable.onshape.feature.Features;
 import lombok.Data;
 
 @Data
-public class BikeAdapterCustomizer {
+public class DeviceCustomizer {
 	private Onshape client;
 	private String documentID;
 	private String workspace;
@@ -34,9 +34,9 @@ public class BikeAdapterCustomizer {
 	private boolean valid;
 	Features features;
 	
-	private static final Logger logger = (Logger) LogManager.getLogger(BikeAdapterCustomizer.class);
+	private static final Logger logger = (Logger) LogManager.getLogger(DeviceCustomizer.class);
 
-	public BikeAdapterCustomizer(Onshape c, String did, String w) {
+	public DeviceCustomizer(Onshape c, String did, String w) {
 		client = c;
 		documentID = did;
 		workspace = w;
