@@ -284,7 +284,7 @@ function Customizer() {
 
 		try {
 			toast.current.show({severity:'info', summary: 'Parameters validated, generating device', detail:'Please wait until complete...', life: 5000});
-		  	const response = await fetch('http://localhost:8080/customizer/generate', {
+		  	const response = await fetch('https://dev.e-nableitalia.it/backend/customizer/generate', {
 			method: 'POST',
 			body: JSON.stringify({ 
 				username: state.name,
