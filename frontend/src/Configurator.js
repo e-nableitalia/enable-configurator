@@ -13,8 +13,9 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { motion } from 'framer-motion'
-import { AiOutlineArrowLeft, AiOutlineEye, AiOutlineHighlight, AiOutlineLogin, AiOutlineSend, AiOutlineZoomIn } from 'react-icons/ai'
+import { AiOutlineArrowLeft, AiOutlineEye, AiOutlineHighlight, AiOutlineLogin, AiOutlineQuestionCircle, AiOutlineSend } from 'react-icons/ai'
 import { useSnapshot } from 'valtio'
+import { Modal } from "react-bootstrap";
 import { state } from './store'
 
 const Intro = () => {
@@ -31,7 +32,6 @@ const Intro = () => {
 		state.name = null;
 		state.email = null;
 		state.device = null;
-		state.deviceUrl = null;
 		state.agreed = false;
 		nextStep();
 	}
@@ -109,7 +109,7 @@ const DialogForm = () => {
 			toast.current.show({severity:'error', summary: 'Privacy consent', detail:'No privacy consent provided, we are sorry, it is not possible to proceed without the consent.', life: 5000});
 		  	return;
 		}
-		if (!state.deviceUrl) {
+		if (!state.device) {
 			toast.current.show({severity:'error', summary: 'Device selection', detail:'Please select a device model to customize.', life: 5000});
 		  	return;
 		}
@@ -125,7 +125,6 @@ const DialogForm = () => {
 			state.name = null;
 			state.email = null;
 			state.device = null;
-			state.deviceUrl = null;
 			state.agreed = false;
 			previousStep();
 		}
@@ -139,11 +138,6 @@ const DialogForm = () => {
             </div>
         );
     }
-
-	const setDevice = (e) => {
-		state.device = e.target.value.key;
-		state.deviceUrl = e.target.value.url;
-	}
 
     return (
 		<>	
@@ -179,7 +173,7 @@ const DialogForm = () => {
 						<div className="field grid">
 							<label class="col-fixed" style={{ "width": "300px" }}>Device</label>
 							<div class="col">
-								<Dropdown value={snap.device} onChange={(e) => setDevice(e)} options={snap.deviceItems} optionLabel="name" placeholder="Select a Device" className="w-full md:w-14rem" tooltip='Select the device to customize'/>
+								<Dropdown value={snap.device} onChange={(e) => (state.device = e.value)} options={snap.deviceItems} optionLabel="name" placeholder="Select a Device" className="w-full md:w-14rem" tooltip='Select the device to customize'/>
 							</div>							
 						</div>
 						<div className="field grid">
@@ -262,7 +256,6 @@ function Customizer() {
 		state.name = null;
 		state.email = null;
 		state.device = null;
-		state.deviceUrl = null;
 		state.agreed = false;
 		previousStep();
 	}
@@ -289,8 +282,8 @@ function Customizer() {
 			body: JSON.stringify({ 
 				username: state.name,
 				email: state.email,
-				device: state.device,
-				deviceUrl : state.deviceUrl,
+				device: state.device.name,
+				deviceUrl : state.device.deviceUrl,
 				parameters: state.deviceParameters
 			}),
 			headers: {
@@ -408,7 +401,7 @@ function Customizer() {
 							))}
 							
 							<div className="field grid">
-								<p style={{ fontSize : 14}}>Welcome {snap.name}, use the above controls to change parameters and to adapt device to recipient physical characteristics, once done click GENERATE to generate the custom STL file, you'll receive it at e-mail address you have specified.</p>
+								<p style={{ fontSize : 14}}>Welcome {snap.name}, use the above controls to change parameters and to adapt device to recipient physical characteristics, once done click GENERATE to generate the custom STL file, file download will start automatically once STL generation process is completed. Click on the HELP button to get help on how to take measures for proper device dimensioning.</p>
 							</div>
 	
 							<div className="field grid">
@@ -419,7 +412,13 @@ function Customizer() {
 							</button>
 
 							<button className='preview' 
-							style={{ background: snap.color }} onClick={() => alert("Preview current disabled")}>
+							style={{ background: snap.color }} onClick={() => (window.open('https://e-nableitalia.it/en/dimensionamento-bike-adapter/', '_blank', 'noreferrer'))}>
+								Help
+								<AiOutlineQuestionCircle size="1.3em" />
+							</button>
+
+							<button 
+							style={{ background: snap.color }} onClick={() => alert("this project is still a work in progress, preview feature is in roadmap but it is not yet implemented, stay tuned for project updates.")}>
 								Preview
 								<AiOutlineEye size="1.3em" />
 							</button>
