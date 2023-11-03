@@ -17,6 +17,7 @@ import { AiOutlineArrowLeft, AiOutlineEye, AiOutlineHighlight, AiOutlineLogin, A
 import { useSnapshot } from 'valtio'
 import { Modal } from "react-bootstrap";
 import { state } from './store'
+import { eventBus } from "./EventBus";
 
 const Intro = () => {
 	const transition = { type: 'spring', duration: 0.8 }
@@ -87,6 +88,8 @@ const DialogForm = () => {
 	const transition = { type: 'spring', duration: 0.8 }
 	const snap = useSnapshot(state)
 	const toast = useRef(null);
+	const [stl, setStl] = useState('');
+
 
 	const {
 		nextStep,
@@ -116,6 +119,10 @@ const DialogForm = () => {
 
 		setShowMe(true);
     }
+
+	const changeStl = () => {
+		eventBus.dispatch("changeStl", { stl: state.device.stl });
+	  };
 
     const onHide = (name) => {
         setShowMe(false);
@@ -173,7 +180,7 @@ const DialogForm = () => {
 						<div className="field grid">
 							<label class="col-fixed" style={{ "width": "300px" }}>Device</label>
 							<div class="col">
-								<Dropdown value={snap.device} onChange={(e) => (state.device = e.value)} options={snap.deviceItems} optionLabel="name" placeholder="Select a Device" className="w-full md:w-14rem" tooltip='Select the device to customize'/>
+								<Dropdown value={snap.device} onChange={(e) => (state.device = e.value, changeStl())} options={snap.deviceItems} optionLabel="name" placeholder="Select a Device" className="w-full md:w-14rem" tooltip='Select the device to customize'/>
 							</div>							
 						</div>
 						<div className="field grid">
@@ -263,7 +270,7 @@ function Customizer() {
 	const handleClick = async () => {
 		var count = 0;
 		// validate params
-		state.deviceParameters.forEach(function(v, key) {
+		state.deviceParameters[state.device.key].forEach(function(v, key) {
 			if (v.value < v.min) {
 				toast.current.show({severity:'error', summary: 'Parameters validation failed', detail: 'Parameter[' + v.key + '] min value = ' + v.min, sticky: true});
 			} else if (v.value > v.max) {
@@ -272,7 +279,7 @@ function Customizer() {
 				count ++;
 		})
 
-		if (count != state.deviceParameters.length)
+		if (count != state.deviceParameters[state.device.key].length)
 			return;
 
 		try {
@@ -283,8 +290,8 @@ function Customizer() {
 				username: state.name,
 				email: state.email,
 				device: state.device.name,
-				deviceUrl : state.device.deviceUrl,
-				parameters: state.deviceParameters
+				deviceUrl : state.device.url,
+				parameters: state.deviceParameters[state.device.key]
 			}),
 			headers: {
 			   'Content-type': 'application/json; charset=UTF-8',
@@ -332,7 +339,7 @@ function Customizer() {
 	  };
 
 	const handlechange = (v, key) => {
-		var result = [...state.deviceParameters]; //<- copy parameters into result
+		var result = [...state.deviceParameters[state.device.key]]; //<- copy parameters into result
 		result = result.map((x) => { //<- use map on result to find element to update using id
 		  if (x.key === key) {
 			x.value = v;
@@ -342,7 +349,7 @@ function Customizer() {
 	};
 
 	const handlevalidate = (v, key) => {
-		var result = [...state.deviceParameters]; //<- copy parameters into result
+		var result = [...state.deviceParameters[state.device.key]]; //<- copy parameters into result
 		result = result.map((x) => { //<- use map on result to find element to update using id
 			if (x.key === key) {
 				x.value = v;
@@ -390,7 +397,7 @@ function Customizer() {
 									</div>
 								</div>
 							</div>
-							{snap.deviceParameters.map((parameter) => (
+							{snap.deviceParameters[state.device.key].map((parameter) => (
 								<div className="field grid">
 									<label class="col-fixed" style={{ "width": "300px" }}>{parameter.description}</label>
 									<div class="col">
