@@ -51,6 +51,8 @@ Currently tested and supported for Chrome
 
 # Authors
 
+Andrea Maddonni <andream2001@gmail.com>, e-Nable Italia
+
 Kabir Lovero <kabirlovero@gmail.com>, e-Nable Italia
 
 Alberto Navatta <alberto@e-nableitalia.it>, e-Nable Italia
