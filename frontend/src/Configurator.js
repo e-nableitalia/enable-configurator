@@ -283,7 +283,7 @@ function Customizer() {
 				username: state.name,
 				email: state.email,
 				device: state.device.name,
-				deviceUrl : state.device.deviceUrl,
+				deviceUrl : state.device.url,
 				parameters: state.deviceParameters
 			}),
 			headers: {
@@ -309,7 +309,7 @@ function Customizer() {
 		link.href = url;
 		link.setAttribute(
 			'download',
-			snap.device + '.stl',
+			snap.device.name + '.stl',
 		);
 	
 		// Append to html link element page

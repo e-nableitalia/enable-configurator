@@ -10,7 +10,7 @@ const state = proxy({
   colors: ['#ccc', '#EFBD4E', '#80C670', '#726DE8', '#EF674E', '#353934'],
   color: '#EFBD4E',
   deviceItems : [
-		{key: 'BikeAdapter', name: 'Bike Adapter', url: 'https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845'}
+		{key: 'BikeAdapter', name: 'Reinforced Bike Adapter', url: 'https://cad.onshape.com/documents/471513dd96bf52964ba23fee/w/77a780b5bc81d8caf5ec536a/e/3811a2376c9a5bc6389c4652'}
 	],
   deviceParameters : [
     {
@@ -43,7 +43,7 @@ const state = proxy({
       defaultValue: 100,
       min: 100,
       max: 150,
-      description: 'C - Cone Length Top',
+      description: 'C - Cone Circumference Top',
       onShapeId: 'C_tip_circ',
       onShapeParameter: 'lengthValue',
       onShapeUnit: 'mm',
@@ -55,7 +55,7 @@ const state = proxy({
       defaultValue: 110,
       min: 110,
       max: 250,
-      description: 'D - Cone Length Bottom',
+      description: 'D - Cone Circumference Bottom',
       onShapeId: 'D_root_circ',
       onShapeParameter: 'lengthValue',
       onShapeUnit: 'mm',

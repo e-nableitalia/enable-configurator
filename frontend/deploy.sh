@@ -1,7 +1,6 @@
 #!/bin/bash
 
 echo "building project"
-npm update
 npm run build
 echo "making project backup backup"
 tar -czf /home/centos/configurator_ui_backup_$(date +'%Y%m%d').tgz /var/www/html/configurator
