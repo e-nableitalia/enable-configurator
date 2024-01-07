@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
 import { AccumulativeShadows, RandomizedLight, Environment } from '@react-three/drei'
 
@@ -10,6 +10,7 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { easing } from 'maath'
 import { useSnapshot } from 'valtio'
 import { state } from './store'
+import { eventBus } from "./EventBus";
 
 export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
   <Canvas shadows camera={{ position, fov }} gl={{ preserveDrawingBuffer: true }} eventSource={document.getElementById('root')} eventPrefix="client">
@@ -47,14 +48,26 @@ function CameraRig({ children }) {
 }
 
 function BikeAdapter(props) {
+  const [stl, setStl] = useState(process.env.PUBLIC_URL + "/defaultBikeAdapter.stl");
+
+  useEffect(() => {
+    eventBus.on("changeStl", (data) => {
+        setStl(process.env.PUBLIC_URL + '/' + data.stl + '.stl')
+      }
+    );
+    return () => {
+      eventBus.remove("changeStl");
+    };
+  }, []);
+  
   const snap = useSnapshot(state)
   
   const material = new THREE.MeshPhysicalMaterial({
     metalness: .9, roughness: 0.6, color: 0x0ad2ff
   })
 
-  const geom = useLoader(STLLoader, "defaultBikeAdapter.stl")
-
+  const geom = useLoader(STLLoader, stl)
+  console.log('loaded stl : ' + stl)
   const ref = useRef();
   const { camera } = useThree();
   useEffect(() => {
