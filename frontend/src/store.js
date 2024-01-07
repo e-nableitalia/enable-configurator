@@ -10,7 +10,7 @@ const state = proxy({
   colors: ['#ccc', '#EFBD4E', '#80C670', '#726DE8', '#EF674E', '#353934'],
   color: '#EFBD4E',
   deviceItems: [
-    { key: '0', name: 'Bike Adapter', url: 'https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845', stl: 'defaultBikeAdapter'},
+		{ key: '0', name: 'Bike Adapter', url: 'https://cad.onshape.com/documents/471513dd96bf52964ba23fee/w/77a780b5bc81d8caf5ec536a/e/3811a2376c9a5bc6389c4652', stl: 'defaultBikeAdapter'},
     { key: '1', name: 'Palm Kinetic', url: 'https://cad.onshape.com/documents/5b587ad656e9d002f8e6bad6/w/de2c6c2802ab923db649ef32/e/ab629266e0f6758e30a87845', stl: 'palm_kinetic_bionic' }
   ],
   deviceParameters: [

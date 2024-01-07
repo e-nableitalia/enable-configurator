@@ -316,7 +316,7 @@ function Customizer() {
 		link.href = url;
 		link.setAttribute(
 			'download',
-			snap.device + '.stl',
+			snap.device.name + '.stl',
 		);
 	
 		// Append to html link element page
